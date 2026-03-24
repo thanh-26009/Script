@@ -1,0 +1,10 @@
+local name = "locdepzaicudai1m2"
+
+local code = game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/Bloxfruits.lua")
+
+-- đổi các chữ trong script thành tên của bạn
+code = code:gsub("vinh","locdepzaicudai1m2")
+code = code:gsub("Vinh","locdepzaicudai1m2")
+code = code:gsub("hack","locdepzaicudai1m2")
+
+loadstring(code)()

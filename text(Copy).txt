@@ -1,0 +1,57 @@
+repeat task.wait() until game:IsLoaded()
+
+_G.ThemeID = _G.ThemeID or nil
+_G.AutoTranslate = (_G.AutoTranslate == nil) and true or _G.AutoTranslate
+_G.SaveConfig = (_G.SaveConfig == nil) and true or _G.SaveConfig
+
+local HttpService = game:GetService("HttpService")
+local StarterGui = game:GetService("StarterGui")
+local placeId = game.PlaceId
+
+local UniverseID = HttpService:JSONDecode(
+    game:HttpGet("https://apis.roblox.com/universes/v1/places/"..placeId.."/universe")
+).universeId
+
+if UniverseID == 994732206 then
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/tienloc27112012-a11y/Locdepzaicudai1m2-/refs/heads/main/text%202.txt"))()
+
+    task.wait(1)
+
+    StarterGui:SetCore("SendNotification",{
+        Title = "khoga Hub",
+        Text = "Nà Ná Na Na Ná",
+        Duration = 3
+    })
+
+    task.wait(3)
+
+    StarterGui:SetCore("SendNotification",{
+        Title = "khoga Hub",
+        Text = "Anh Độ Mixi",
+        Duration = 2
+    })
+
+    task.wait(2)
+
+    StarterGui:SetCore("SendNotification",{
+        Title = "khoga Hub",
+        Text = "Loader Success!",
+        Duration = 5
+    })
+
+    task.wait(1)
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Graihub/Gay/refs/heads/main/bamia"))()
+
+else
+    StarterGui:SetCore("SendNotification",{
+        Title = "khoga Hub",
+        Text = "Game Not Supported",
+        Duration = 5
+    })
+
+    task.wait(1)
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Graihub/notsupport/refs/heads/main/Ui"))()
+end

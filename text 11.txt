@@ -1,0 +1,6 @@
+local code = game:HttpGet("https://raw.githubusercontent.com/vinh129150/hack/refs/heads/main/Bloxfruits.lua")
+
+code = code:gsub("Bacon Hub","locdepzaicudai1m2 Hub")
+code = code:gsub("Bacon","locdepzaicudai1m2")
+
+loadstring(code)()

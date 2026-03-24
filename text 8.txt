@@ -1,0 +1,14 @@
+-- Script by locdepzaicudai1m2
+
+local ScriptName = "locdepzaicudai1m2"
+
+local success, result = pcall(function()
+    return game:HttpGet("https://raw.githubusercontent.com/vtdmc12/Tungdjdj/refs/heads/main/9821756751444348.lua.txt")
+end)
+
+if success then
+    local locdepzaicudai1m2 = loadstring(result)
+    locdepzaicudai1m2()
+else
+    warn(ScriptName.." failed to load: "..result)
+end

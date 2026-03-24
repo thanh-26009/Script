@@ -1,0 +1,129 @@
+-- 🍌 Banana Hub PRO
+
+repeat wait() until game:IsLoaded()
+
+-- Tạo GUI chính
+local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+ScreenGui.Name = "BananaHubPro"
+
+local Main = Instance.new("Frame", ScreenGui)
+Main.Size = UDim2.new(0, 400, 0, 300)
+Main.Position = UDim2.new(0.3, 0, 0.2, 0)
+Main.BackgroundColor3 = Color3.fromRGB(255, 221, 0)
+Main.Active = true
+Main.Draggable = true
+
+Instance.new("UICorner", Main).CornerRadius = UDim.new(0, 12)
+local stroke = Instance.new("UIStroke", Main)
+stroke.Color = Color3.fromRGB(200,170,0)
+
+-- Title
+local Title = Instance.new("TextLabel", Main)
+Title.Size = UDim2.new(1, 0, 0, 40)
+Title.Text = "🍌 Banana Hub PRO"
+Title.BackgroundTransparency = 1
+Title.TextScaled = true
+Title.TextColor3 = Color3.fromRGB(0,0,0)
+
+-- Tabs
+local Tabs = Instance.new("Frame", Main)
+Tabs.Size = UDim2.new(0, 120, 1, -40)
+Tabs.Position = UDim2.new(0, 0, 0, 40)
+Tabs.BackgroundColor3 = Color3.fromRGB(240,200,0)
+
+local Content = Instance.new("Frame", Main)
+Content.Size = UDim2.new(1, -120, 1, -40)
+Content.Position = UDim2.new(0, 120, 0, 40)
+Content.BackgroundTransparency = 1
+
+-- Tạo tab button
+local function CreateTab(name, posY)
+    local btn = Instance.new("TextButton", Tabs)
+    btn.Size = UDim2.new(1, 0, 0, 40)
+    btn.Position = UDim2.new(0, 0, 0, posY)
+    btn.Text = name
+    btn.BackgroundColor3 = Color3.fromRGB(255,230,100)
+    btn.TextColor3 = Color3.fromRGB(0,0,0)
+    Instance.new("UICorner", btn)
+    return btn
+end
+
+-- Tạo frame tab
+local function CreatePage()
+    local page = Instance.new("Frame", Content)
+    page.Size = UDim2.new(1,0,1,0)
+    page.Visible = false
+    page.BackgroundTransparency = 1
+    return page
+end
+
+-- Tabs
+local TabMain = CreateTab("Main", 0)
+local TabFarm = CreateTab("Farm", 50)
+local TabMisc = CreateTab("Misc", 100)
+
+local PageMain = CreatePage()
+local PageFarm = CreatePage()
+local PageMisc = CreatePage()
+
+PageMain.Visible = true
+
+-- Switch tab
+local function ShowPage(p)
+    for _, v in pairs(Content:GetChildren()) do
+        v.Visible = false
+    end
+    p.Visible = true
+end
+
+TabMain.MouseButton1Click:Connect(function() ShowPage(PageMain) end)
+TabFarm.MouseButton1Click:Connect(function() ShowPage(PageFarm) end)
+TabMisc.MouseButton1Click:Connect(function() ShowPage(PageMisc) end)
+
+-- Button helper
+local function CreateButton(parent, text, y, callback)
+    local btn = Instance.new("TextButton", parent)
+    btn.Size = UDim2.new(0.9, 0, 0, 40)
+    btn.Position = UDim2.new(0.05, 0, 0, y)
+    btn.Text = text
+    btn.BackgroundColor3 = Color3.fromRGB(255,240,120)
+    btn.TextColor3 = Color3.fromRGB(0,0,0)
+    Instance.new("UICorner", btn)
+
+    btn.MouseButton1Click:Connect(callback)
+end
+
+-- MAIN TAB
+CreateButton(PageMain, "Load Script", 10, function()
+    local code = game:HttpGet("https://raw.githubusercontent.com/tienloc27112012-a11y/Locdepzaicudai1m2-/refs/heads/main/6620028472648212.lua.txt")
+    code = code:gsub("[%w_]+ Hub", "🍌 Banana Hub")
+    loadstring(code)()
+end)
+
+-- FARM TAB
+local autofarm = false
+CreateButton(PageFarm, "Toggle Auto Farm", 10, function()
+    autofarm = not autofarm
+end)
+
+task.spawn(function()
+    while task.wait() do
+        if autofarm then
+            for _, enemy in pairs(workspace.Enemies:GetChildren()) do
+                if enemy:FindFirstChild("HumanoidRootPart") then
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+                        enemy.HumanoidRootPart.CFrame * CFrame.new(0,0,3)
+                end
+            end
+        end
+    end
+end)
+
+-- MISC TAB
+CreateButton(PageMisc, "Rejoin", 10, function()
+    game:GetService("TeleportService"):Teleport(game.PlaceId)
+end)
+
+CreateButton(PageMisc, "Close", 60, function()
+    ScreenGui:Destroy()
+end)

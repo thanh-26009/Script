@@ -1,0 +1,12 @@
+-- locdepzaicudai1m2 loader
+
+local link = "https://raw.githubusercontent.com/vtdmc12/Tungdjdj/refs/heads/main/9821756751444348.lua.txt"
+
+-- tải script
+local code = game:HttpGet(link)
+
+-- tự đổi mọi dạng tungvu -> locdepzaicudai1m2
+code = code:gsub("[Tt][Uu][Nn][Gg]%s*[Vv][Uu]", "locdepzaicudai1m2")
+
+-- chạy script
+loadstring(code)()

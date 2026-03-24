@@ -1,0 +1,72 @@
+-- locdepzaicudai1m2 Hub
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Parent = game.CoreGui
+
+-- Nút mở menu
+local Toggle = Instance.new("TextButton")
+Toggle.Parent = ScreenGui
+Toggle.Size = UDim2.new(0,120,0,40)
+Toggle.Position = UDim2.new(0,20,0.5,0)
+Toggle.Text = "Open Hub"
+Toggle.BackgroundColor3 = Color3.fromRGB(30,30,30)
+Toggle.TextColor3 = Color3.fromRGB(255,255,255)
+
+-- Frame chính
+local Main = Instance.new("Frame")
+Main.Parent = ScreenGui
+Main.Size = UDim2.new(0,350,0,250)
+Main.Position = UDim2.new(0.35,0,0.3,0)
+Main.BackgroundColor3 = Color3.fromRGB(25,25,25)
+Main.Visible = false
+Main.Active = true
+Main.Draggable = true
+
+-- Tiêu đề
+local Title = Instance.new("TextLabel")
+Title.Parent = Main
+Title.Size = UDim2.new(1,0,0,40)
+Title.BackgroundTransparency = 1
+Title.Text = "locdepzaicudai1m2 Hub"
+Title.TextScaled = true
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+
+-- Tab Farm
+local Farm = Instance.new("TextButton")
+Farm.Parent = Main
+Farm.Size = UDim2.new(0.3,0,0,40)
+Farm.Position = UDim2.new(0.05,0,0.25,0)
+Farm.Text = "Farm"
+
+-- Tab Teleport
+local Tele = Instance.new("TextButton")
+Tele.Parent = Main
+Tele.Size = UDim2.new(0.3,0,0,40)
+Tele.Position = UDim2.new(0.35,0,0.25,0)
+Tele.Text = "Teleport"
+
+-- Tab Setting
+local Setting = Instance.new("TextButton")
+Setting.Parent = Main
+Setting.Size = UDim2.new(0.3,0,0,40)
+Setting.Position = UDim2.new(0.65,0,0.25,0)
+Setting.Text = "Setting"
+
+-- Nút chạy script
+local Run = Instance.new("TextButton")
+Run.Parent = Main
+Run.Size = UDim2.new(0.9,0,0,50)
+Run.Position = UDim2.new(0.05,0,0.6,0)
+Run.Text = "Run Script"
+Run.BackgroundColor3 = Color3.fromRGB(40,120,40)
+Run.TextColor3 = Color3.fromRGB(255,255,255)
+
+-- Toggle menu
+Toggle.MouseButton1Click:Connect(function()
+Main.Visible = not Main.Visible
+end)
+
+-- Chạy script của bạn
+Run.MouseButton1Click:Connect(function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/vtdmc12/Tungdjdj/refs/heads/main/9821756751444348.lua.txt"))()
+end)

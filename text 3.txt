@@ -1,0 +1,45 @@
+-- Khoga Hub (Redz Style)
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local Button1 = Instance.new("TextButton")
+local Button2 = Instance.new("TextButton")
+
+ScreenGui.Parent = game.CoreGui
+
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(170,0,0)
+Frame.Position = UDim2.new(0.35,0,0.3,0)
+Frame.Size = UDim2.new(0,300,0,200)
+Frame.Active = true
+Frame.Draggable = true
+
+Title.Parent = Frame
+Title.Size = UDim2.new(1,0,0,40)
+Title.Text = "KHOGA HUB"
+Title.BackgroundColor3 = Color3.fromRGB(120,0,0)
+Title.TextColor3 = Color3.new(1,1,1)
+Title.TextScaled = true
+
+Button1.Parent = Frame
+Button1.Position = UDim2.new(0.1,0,0.35,0)
+Button1.Size = UDim2.new(0.8,0,0,40)
+Button1.Text = "Auto Farm"
+Button1.BackgroundColor3 = Color3.fromRGB(200,0,0)
+Button1.TextColor3 = Color3.new(1,1,1)
+
+Button2.Parent = Frame
+Button2.Position = UDim2.new(0.1,0,0.6,0)
+Button2.Size = UDim2.new(0.8,0,0,40)
+Button2.Text = "Teleport"
+Button2.BackgroundColor3 = Color3.fromRGB(200,0,0)
+Button2.TextColor3 = Color3.new(1,1,1)
+
+Button1.MouseButton1Click:Connect(function()
+    print("Auto Farm Activated")
+end)
+
+Button2.MouseButton1Click:Connect(function()
+    print("Teleport Activated")
+end)

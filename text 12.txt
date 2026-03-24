@@ -1,0 +1,13 @@
+local Settings = {
+    JoinTeam = "Pirates"; -- Pirates/Marines
+    Translator = true; -- true/false
+}
+
+local code = game:HttpGet("https://raw.githubusercontent.com/PlockScripts/newredz/refs/heads/main/Remake-version.luau")
+
+-- đổi tên hub
+code = code:gsub("Redz Hub","locdepzaicudai1m2 Hub")
+code = code:gsub("REDz Hub","locdepzaicudai1m2 Hub")
+code = code:gsub("redz","locdepzaicudai1m2")
+
+loadstring(code)(Settings)

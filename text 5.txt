@@ -1,0 +1,133 @@
+-- KHOGA HUB UI ADVANCED
+
+local player = game.Players.LocalPlayer
+local gui = Instance.new("ScreenGui", player:WaitForChild("PlayerGui"))
+
+-- main
+local main = Instance.new("Frame", gui)
+main.Size = UDim2.new(0,340,0,240)
+main.Position = UDim2.new(0.5,-170,0.5,-120)
+main.BackgroundColor3 = Color3.fromRGB(25,25,25)
+
+Instance.new("UICorner", main).CornerRadius = UDim.new(0,12)
+
+-- title
+local title = Instance.new("TextLabel", main)
+title.Size = UDim2.new(1,0,0,40)
+title.BackgroundTransparency = 1
+title.Text = "KHOGA HUB"
+title.TextScaled = true
+title.TextColor3 = Color3.new(1,1,1)
+
+-- tab frame
+local tabs = Instance.new("Frame", main)
+tabs.Size = UDim2.new(1,0,0,35)
+tabs.Position = UDim2.new(0,0,0,40)
+tabs.BackgroundTransparency = 1
+
+-- page frame
+local pages = Instance.new("Frame", main)
+pages.Size = UDim2.new(1,0,1,-75)
+pages.Position = UDim2.new(0,0,0,75)
+pages.BackgroundTransparency = 1
+
+-- function tạo tab
+local function createTab(name,pos)
+
+	local btn = Instance.new("TextButton",tabs)
+	btn.Size = UDim2.new(0.25,0,1,0)
+	btn.Position = UDim2.new(pos,0,0,0)
+	btn.Text = name
+	btn.BackgroundColor3 = Color3.fromRGB(40,40,40)
+	btn.TextColor3 = Color3.new(1,1,1)
+
+	Instance.new("UICorner",btn)
+
+	local page = Instance.new("Frame",pages)
+	page.Size = UDim2.new(1,0,1,0)
+	page.BackgroundTransparency = 1
+	page.Visible = false
+
+	btn.MouseButton1Click:Connect(function()
+
+		for _,v in pairs(pages:GetChildren()) do
+			if v:IsA("Frame") then
+				v.Visible = false
+			end
+		end
+
+		page.Visible = true
+
+	end)
+
+	return page
+end
+
+local farm = createTab("Farm",0)
+local teleport = createTab("Teleport",0.25)
+local raid = createTab("Raid",0.5)
+local setting = createTab("Setting",0.75)
+
+farm.Visible = true
+
+-- toggle switch
+local function createToggle(parent,text,y)
+
+	local frame = Instance.new("Frame",parent)
+	frame.Size = UDim2.new(1,-20,0,40)
+	frame.Position = UDim2.new(0,10,0,y)
+	frame.BackgroundColor3 = Color3.fromRGB(40,40,40)
+
+	Instance.new("UICorner",frame)
+
+	local label = Instance.new("TextLabel",frame)
+	label.Size = UDim2.new(0.6,0,1,0)
+	label.BackgroundTransparency = 1
+	label.Text = text
+	label.TextScaled = true
+	label.TextColor3 = Color3.new(1,1,1)
+
+	local switch = Instance.new("Frame",frame)
+	switch.Size = UDim2.new(0,50,0,24)
+	switch.Position = UDim2.new(1,-60,0.5,-12)
+	switch.BackgroundColor3 = Color3.fromRGB(120,0,0)
+
+	Instance.new("UICorner",switch).CornerRadius = UDim.new(1,0)
+
+	local circle = Instance.new("Frame",switch)
+	circle.Size = UDim2.new(0,22,0,22)
+	circle.Position = UDim2.new(0,1,0.5,-11)
+	circle.BackgroundColor3 = Color3.new(1,1,1)
+
+	Instance.new("UICorner",circle).CornerRadius = UDim.new(1,0)
+
+	local on = false
+
+	switch.InputBegan:Connect(function()
+
+		on = not on
+
+		if on then
+
+			switch.BackgroundColor3 = Color3.fromRGB(0,170,0)
+			circle:TweenPosition(UDim2.new(1,-23,0.5,-11),"Out","Quad",0.2,true)
+
+		else
+
+			switch.BackgroundColor3 = Color3.fromRGB(120,0,0)
+			circle:TweenPosition(UDim2.new(0,1,0.5,-11),"Out","Quad",0.2,true)
+
+		end
+
+	end)
+
+end
+
+createToggle(farm,"Auto Farm",20)
+createToggle(farm,"Auto Quest",70)
+
+createToggle(teleport,"Teleport Island",20)
+
+createToggle(raid,"Auto Raid",20)
+
+createToggle(setting,"Low Graphics",20)
